@@ -51,15 +51,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
-void clear7SEG(){
-	HAL_GPIO_WritePin (GPIOB, GPIO_PIN_0, SET);
-	HAL_GPIO_WritePin (GPIOB, GPIO_PIN_1, SET);
-	HAL_GPIO_WritePin (GPIOB, GPIO_PIN_2, SET);
-	HAL_GPIO_WritePin (GPIOB, GPIO_PIN_3, SET);
-	HAL_GPIO_WritePin (GPIOB, GPIO_PIN_4, SET);
-	HAL_GPIO_WritePin (GPIOB, GPIO_PIN_5, SET);
-	HAL_GPIO_WritePin (GPIOB, GPIO_PIN_6, SET);
-}
 void display7SEG(int num){
 	switch(num){
 		case 1:
