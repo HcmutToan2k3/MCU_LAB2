@@ -27,9 +27,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000085d0  00000000  00000000  00020035  2**0
+ 12 .debug_info   000085d3  00000000  00000000  00020035  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000015ef  00000000  00000000  00028605  2**0
+ 13 .debug_abbrev 000015ef  00000000  00000000  00028608  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  14 .debug_aranges 00000970  00000000  00000000  00029bf8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -608,47 +608,51 @@ int main(void)
  8000504:	08000541 	.word	0x08000541
 		  switch(status){
 		  case 1:
-			  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
- 8000508:	2200      	movs	r2, #0
- 800050a:	2140      	movs	r1, #64	; 0x40
- 800050c:	481d      	ldr	r0, [pc, #116]	; (8000584 <main+0xe4>)
- 800050e:	f000 fd1d 	bl	8000f4c <HAL_GPIO_WritePin>
 			  display7SEG(1);
- 8000512:	2001      	movs	r0, #1
- 8000514:	f7ff fe36 	bl	8000184 <display7SEG>
+ 8000508:	2001      	movs	r0, #1
+ 800050a:	f7ff fe3b 	bl	8000184 <display7SEG>
+			  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
+ 800050e:	2200      	movs	r2, #0
+ 8000510:	2140      	movs	r1, #64	; 0x40
+ 8000512:	481c      	ldr	r0, [pc, #112]	; (8000584 <main+0xe4>)
+ 8000514:	f000 fd1a 	bl	8000f4c <HAL_GPIO_WritePin>
+
 			  break;
  8000518:	e01c      	b.n	8000554 <main+0xb4>
 		  case 2:
-			  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
- 800051a:	2200      	movs	r2, #0
- 800051c:	2180      	movs	r1, #128	; 0x80
- 800051e:	4819      	ldr	r0, [pc, #100]	; (8000584 <main+0xe4>)
- 8000520:	f000 fd14 	bl	8000f4c <HAL_GPIO_WritePin>
 			  display7SEG(2);
- 8000524:	2002      	movs	r0, #2
- 8000526:	f7ff fe2d 	bl	8000184 <display7SEG>
+ 800051a:	2002      	movs	r0, #2
+ 800051c:	f7ff fe32 	bl	8000184 <display7SEG>
+			  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
+ 8000520:	2200      	movs	r2, #0
+ 8000522:	2180      	movs	r1, #128	; 0x80
+ 8000524:	4817      	ldr	r0, [pc, #92]	; (8000584 <main+0xe4>)
+ 8000526:	f000 fd11 	bl	8000f4c <HAL_GPIO_WritePin>
+
 			  break;
  800052a:	e013      	b.n	8000554 <main+0xb4>
 		  case 3:
-			  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
- 800052c:	2200      	movs	r2, #0
- 800052e:	f44f 7180 	mov.w	r1, #256	; 0x100
- 8000532:	4814      	ldr	r0, [pc, #80]	; (8000584 <main+0xe4>)
- 8000534:	f000 fd0a 	bl	8000f4c <HAL_GPIO_WritePin>
 			  display7SEG(3);
- 8000538:	2003      	movs	r0, #3
- 800053a:	f7ff fe23 	bl	8000184 <display7SEG>
+ 800052c:	2003      	movs	r0, #3
+ 800052e:	f7ff fe29 	bl	8000184 <display7SEG>
+			  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
+ 8000532:	2200      	movs	r2, #0
+ 8000534:	f44f 7180 	mov.w	r1, #256	; 0x100
+ 8000538:	4812      	ldr	r0, [pc, #72]	; (8000584 <main+0xe4>)
+ 800053a:	f000 fd07 	bl	8000f4c <HAL_GPIO_WritePin>
+
 			  break;
  800053e:	e009      	b.n	8000554 <main+0xb4>
 		  case 4:
-			  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
- 8000540:	2200      	movs	r2, #0
- 8000542:	f44f 7100 	mov.w	r1, #512	; 0x200
- 8000546:	480f      	ldr	r0, [pc, #60]	; (8000584 <main+0xe4>)
- 8000548:	f000 fd00 	bl	8000f4c <HAL_GPIO_WritePin>
 			  display7SEG(0);
- 800054c:	2000      	movs	r0, #0
- 800054e:	f7ff fe19 	bl	8000184 <display7SEG>
+ 8000540:	2000      	movs	r0, #0
+ 8000542:	f7ff fe1f 	bl	8000184 <display7SEG>
+			  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+ 8000546:	2200      	movs	r2, #0
+ 8000548:	f44f 7100 	mov.w	r1, #512	; 0x200
+ 800054c:	480d      	ldr	r0, [pc, #52]	; (8000584 <main+0xe4>)
+ 800054e:	f000 fcfd 	bl	8000f4c <HAL_GPIO_WritePin>
+
 			  break;
  8000552:	bf00      	nop
 		  }
