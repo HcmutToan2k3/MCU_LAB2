@@ -229,9 +229,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(50);
+  setTimer1(25);
   setTimer2(100);
   //int status = 1;
+  int
   while (1)
   {
     /* USER CODE END WHILE */
@@ -244,6 +245,7 @@ int main(void)
 	  if(timer2_flag==1){
 		  setTimer2(100);
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+
 	  }
 
     /* USER CODE BEGIN 3 */
