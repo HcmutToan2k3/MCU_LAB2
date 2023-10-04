@@ -158,7 +158,7 @@ int index_led = 0;
 int led_buffer [4] = {3, 7, 0, 4};
 void update7SEG ( int index ){
 	clearAll();
-	display7SEG(index);
+	display7SEG(led_buffer[index]);
 	switch ( index ){
 	case 0:
 		// Display the first 7 SEG with led_buffer [0]
@@ -240,30 +240,6 @@ int main(void)
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  update7SEG(index_led++);
 		  if(index_led > MAX_LED) index_led = 0;
-//		  clearAll();
-//		  switch(status){
-//		  case 1:
-//			  display7SEG(1);
-//			  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
-//
-//			  break;
-//		  case 2:
-//			  display7SEG(2);
-//			  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
-//			  break;
-//		  case 3:
-//			  display7SEG(3);
-//			  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
-//
-//			  break;
-//		  case 4:
-//			  display7SEG(0);
-//			  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
-//
-//			  break;
-//		  }
-//		  status++;
-//		  if(status>4) status = 1;
 	  }
 	  if(timer2_flag==1){
 		  setTimer2(100);
