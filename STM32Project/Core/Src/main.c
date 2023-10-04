@@ -236,7 +236,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  if(timer1_flag == 1){
-		  setTimer1(50);
+		  setTimer1(25);
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  update7SEG(index_led++);
 		  if(index_led > MAX_LED) index_led = 0;
