@@ -647,13 +647,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(50);
- 800053e:	2032      	movs	r0, #50	; 0x32
+  setTimer1(25);
+ 800053e:	2019      	movs	r0, #25
  8000540:	f000 f920 	bl	8000784 <setTimer1>
   setTimer2(100);
  8000544:	2064      	movs	r0, #100	; 0x64
  8000546:	f000 f931 	bl	80007ac <setTimer2>
   //int status = 1;
+
   while (1)
   {
     /* USER CODE END WHILE */

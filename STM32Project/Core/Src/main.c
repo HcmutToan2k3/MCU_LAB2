@@ -232,7 +232,7 @@ int main(void)
   setTimer1(25);
   setTimer2(100);
   //int status = 1;
-  int
+
   while (1)
   {
     /* USER CODE END WHILE */
