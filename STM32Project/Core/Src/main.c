@@ -153,20 +153,58 @@ void display7SEG(int num){
 	}
 }
 
-const int MAX_LED_MATRIX=8;
-int index_matrix=0;
-uint16_t row[8]={ROW0_Pin,ROW1_Pin,ROW2_Pin,ROW3_Pin,ROW4_Pin,ROW5_Pin,ROW6_Pin,ROW7_Pin};
-uint16_t col[8]={ENM0_Pin,ENM1_Pin,ENM2_Pin,ENM3_Pin,ENM4_Pin,ENM5_Pin,ENM6_Pin,ENM7_Pin};
-uint8_t matrix_buffer[8] = {0x04, 0x08, 0x18, 0x28, 0x28, 0x18, 0x08, 0x04};
 
-void clearLEDMatrix(){
+
+const int MAX_LED = 4;
+int index_led = 0;
+int led_buffer [4] = {3, 7, 0, 4};
+void update7SEG ( int index ){
+	clearAll();
+	display7SEG(led_buffer[index]);
+	switch ( index ){
+	case 0:
+		// Display the first 7 SEG with led_buffer [0]
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
+		break ;
+	case 1:
+		//Display the second 7 SEG with led_buffer [1]
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
+		break ;
+	case 2:
+		// Display the third 7 SEG with led_buffer [2]
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
+		break ;
+	case 3:
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+		// Display the forth 7 SEG with led_buffer [3]
+		break ;
+	default :
+		break ;
+	}
+}
+
+int hour = 15, minute = 8, second = 50;
+void updateClockBuffer(){
+	led_buffer[0] = hour/10;
+	led_buffer[1] = hour%10;
+	led_buffer[2] = minute/10;
+	led_buffer[3] = minute%10;
+}
+
+const int MAX_LED_MATRIX=8;
+  int index_matrix=0;
+  uint16_t row[8]={ROW0_Pin,ROW1_Pin,ROW2_Pin,ROW3_Pin,ROW4_Pin,ROW5_Pin,ROW6_Pin,ROW7_Pin};
+  uint16_t col[8]={ENM0_Pin,ENM1_Pin,ENM2_Pin,ENM3_Pin,ENM4_Pin,ENM5_Pin,ENM6_Pin,ENM7_Pin};
+  uint8_t matrix_buffer[8] = {0x04, 0x08, 0x18, 0x28, 0x28, 0x18, 0x08, 0x04};
+
+  void clearLEDMatrix(){
 	  for (int i=0; i<8; i++){
 		  HAL_GPIO_WritePin(GPIOB,row[i],SET);
 		  HAL_GPIO_WritePin(GPIOA,col[i],SET);
 	  }
-}
+  }
 
-void setRow(uint8_t index_buffer){
+  void setRow(uint8_t index_buffer){
 	  if((index_buffer >> 0) & 0x01)
 		  HAL_GPIO_WritePin(ROW0_GPIO_Port, ROW0_Pin, RESET);
 	  if((index_buffer >> 1) & 0x01)
@@ -183,9 +221,9 @@ void setRow(uint8_t index_buffer){
 		  HAL_GPIO_WritePin(ROW6_GPIO_Port, ROW6_Pin, RESET);
 	  if((index_buffer >> 7) & 0x01)
 		  HAL_GPIO_WritePin(ROW7_GPIO_Port, ROW7_Pin, RESET);
-}
+  }
 
-void updateLEDMatrix(int index_matrix){
+  void updateLEDMatrix(int index_matrix){
 	  clearLEDMatrix();
 	  switch(index_matrix){
 	  case 0:
@@ -216,42 +254,7 @@ void updateLEDMatrix(int index_matrix){
 		  break;
 	  }
 	  setRow(matrix_buffer[index_matrix]);
-}
-
-const int MAX_LED = 4;
-int index_led = 0;
-int led_buffer [4] = {3, 7, 0, 4};
-void update7SEG ( int index ){
-	clearAll();
-	display7SEG(led_buffer[index]);
-	switch ( index ){
-	case 0:
-		// Display the first 7 SEG with led_buffer [0]
-		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
-		break ;
-	case 1:
-		//Display the second 7 SEG with led_buffer [1]
-		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
-		break ;
-	case 2:
-		// Display the third 7 SEG with led_buffer [2]
-		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
-		break ;
-	case 3:
-		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
-		// Display the forth 7 SEG with led_buffer [3]
-		break ;
-	default :
-		break ;
-	}
-}
-int hour = 15, minute = 8, second = 50;
-void updateClockBuffer(){
-	led_buffer[0] = hour/10;
-	led_buffer[1] = hour%10;
-	led_buffer[2] = minute/10;
-	led_buffer[3] = minute%10;
-}
+  }
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -312,7 +315,7 @@ int main(void)
   setTimer2(100);
   setTimer3(100);
   //int status = 1;
-
+  int index_led_matrix = 0;
   while (1)
     {
   	  if (timer1_flag==1){
@@ -344,12 +347,12 @@ int main(void)
 
   	  	}
 
-  	  if (timer3_flag==1){
-  		  setTimer3(10);
+  	  	  if (timer3_flag==1){
+  			  setTimer3(10);
 
-  		  updateLEDMatrix(index_matrix++);
-  		  if (index_matrix >= MAX_LED_MATRIX) index_matrix=0;
-  	  }
+  			  updateLEDMatrix(index_matrix++);
+  			  if (index_matrix >= MAX_LED_MATRIX) index_matrix=0;
+  		  }
       /* USER CODE END WHILE */
 
       /* USER CODE BEGIN 3 */
@@ -358,7 +361,7 @@ int main(void)
       /* USER CODE BEGIN 3 */
 
   /* USER CODE END 3 */
-}
+
 
 /**
   * @brief System Clock Configuration
