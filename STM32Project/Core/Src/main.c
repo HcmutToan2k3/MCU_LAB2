@@ -217,7 +217,7 @@ void updateLEDMatrix(int index_matrix){
 	  }
 	  setRow(matrix_buffer[index_matrix]);
 }
-void shift_buffer(uint8_t matrix_buffer[8]){
+void shift_matrix(uint8_t matrix_buffer[8]){
 	  uint8_t temp = matrix_buffer[7];
 	  matrix_buffer[7] = matrix_buffer[6];
 	  matrix_buffer[6] = matrix_buffer[5];
@@ -356,13 +356,13 @@ int main(void)
   	  	}
 
   	  if (timer3_flag==1){
-  		  	  	  setTimer3(10);
+  		  	setTimer3(10);
 
-  				  updateLEDMatrix(index_matrix++);
-  				  if (index_matrix >= MAX_LED_MATRIX) {
-  					  index_matrix=0;
-  					  shift_buffer(matrix_buffer);
-  				  }
+  		    updateLEDMatrix(index_matrix++);
+  		    if (index_matrix >= MAX_LED_MATRIX) {
+  			     index_matrix=0;
+  				 shift_matrix(matrix_buffer);
+  			}
   	  }
       /* USER CODE END WHILE */
 

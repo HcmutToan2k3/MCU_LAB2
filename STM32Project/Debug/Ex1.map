@@ -2219,9 +2219,9 @@ LOAD d:/sem231/vxl/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.
  .text.updateLEDMatrix
                 0x00000000080005dc       0xc4 ./Core/Src/main.o
                 0x00000000080005dc                updateLEDMatrix
- .text.shift_buffer
+ .text.shift_matrix
                 0x00000000080006a0       0x64 ./Core/Src/main.o
-                0x00000000080006a0                shift_buffer
+                0x00000000080006a0                shift_matrix
  .text.update7SEG
                 0x0000000008000704       0x80 ./Core/Src/main.o
                 0x0000000008000704                update7SEG
